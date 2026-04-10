@@ -1,0 +1,1114 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BYO Budget – Free App for Service Industry Workers</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=DM+Sans:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      :root {
+        --green: #22c55e;
+        --green-dark: #16a34a;
+        --green-light: #dcfce7;
+        --green-mid: #bbf7d0;
+        --off-white: #f9fafb;
+        --text-dark: #111827;
+        --text-mid: #374151;
+        --text-muted: #6b7280;
+        --white: #ffffff;
+        --border: #e5e7eb;
+        --shadow: 0 4px 24px rgba(34, 197, 94, 0.1);
+        --radius: 16px;
+      }
+
+      body {
+        font-family: "DM Sans", sans-serif;
+        background: var(--off-white);
+        color: var(--text-dark);
+        overflow-x: hidden;
+      }
+
+      /* ── NAV ── */
+      nav {
+        background: var(--white);
+        border-bottom: 1px solid var(--border);
+        padding: 0 32px;
+        height: 64px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        position: sticky;
+        top: 0;
+        z-index: 100;
+      }
+      .nav-logo {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-family: "Sora", sans-serif;
+        font-weight: 800;
+        font-size: 1.2rem;
+        color: var(--text-dark);
+        text-decoration: none;
+      }
+      .nav-logo-icon {
+        width: 32px;
+        height: 32px;
+        background: var(--green);
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1rem;
+      }
+      .nav-cta {
+        background: var(--green);
+        color: var(--white);
+        padding: 9px 20px;
+        border-radius: 8px;
+        font-weight: 600;
+        font-size: 0.9rem;
+        text-decoration: none;
+        transition: background 0.2s;
+      }
+      .nav-cta:hover {
+        background: var(--green-dark);
+      }
+
+      /* ── HERO ── */
+      .hero {
+        background: var(--white);
+        text-align: center;
+        padding: 72px 24px 80px;
+        position: relative;
+        overflow: hidden;
+      }
+      .hero::before {
+        content: "";
+        position: absolute;
+        top: -80px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 700px;
+        height: 700px;
+        background: radial-gradient(
+          circle,
+          rgba(34, 197, 94, 0.1) 0%,
+          transparent 70%
+        );
+        pointer-events: none;
+      }
+      .hero-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        background: var(--green-light);
+        color: var(--green-dark);
+        font-size: 0.82rem;
+        font-weight: 600;
+        padding: 5px 14px;
+        border-radius: 100px;
+        margin-bottom: 24px;
+      }
+      .hero-badge span {
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: var(--green);
+        display: inline-block;
+      }
+      .hero h1 {
+        font-family: "Sora", sans-serif;
+        font-size: clamp(2.2rem, 5vw, 3.6rem);
+        font-weight: 800;
+        line-height: 1.12;
+        max-width: 700px;
+        margin: 0 auto 20px;
+        color: var(--text-dark);
+      }
+      .hero h1 em {
+        font-style: normal;
+        color: var(--green-dark);
+      }
+      .hero-sub {
+        font-size: 1.1rem;
+        color: var(--text-muted);
+        max-width: 520px;
+        margin: 0 auto 36px;
+        line-height: 1.65;
+      }
+      .hero-btns {
+        display: flex;
+        gap: 12px;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+      .btn-primary {
+        background: var(--green);
+        color: var(--white);
+        padding: 14px 28px;
+        border-radius: 10px;
+        font-weight: 700;
+        font-size: 1rem;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        transition:
+          background 0.2s,
+          transform 0.15s;
+      }
+      .btn-primary:hover {
+        background: var(--green-dark);
+        transform: translateY(-1px);
+      }
+      .btn-outline {
+        background: transparent;
+        color: var(--text-dark);
+        padding: 14px 28px;
+        border-radius: 10px;
+        font-weight: 600;
+        font-size: 1rem;
+        text-decoration: none;
+        border: 1.5px solid var(--border);
+        transition: border-color 0.2s;
+      }
+      .btn-outline:hover {
+        border-color: var(--green);
+        color: var(--green-dark);
+      }
+
+      /* ── TRUST BAR ── */
+      .trust-bar {
+        background: var(--green-light);
+        padding: 18px 24px;
+        text-align: center;
+      }
+      .trust-bar p {
+        font-size: 0.95rem;
+        color: var(--green-dark);
+        font-weight: 600;
+        letter-spacing: 0.01em;
+      }
+
+      /* ── STORY SECTION ── */
+      .story {
+        max-width: 720px;
+        margin: 0 auto;
+        padding: 72px 24px;
+        text-align: center;
+      }
+      .section-label {
+        font-size: 0.8rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: var(--green-dark);
+        margin-bottom: 12px;
+      }
+      .story h2 {
+        font-family: "Sora", sans-serif;
+        font-size: clamp(1.6rem, 3vw, 2.4rem);
+        font-weight: 800;
+        line-height: 1.2;
+        margin-bottom: 20px;
+      }
+      .story-body {
+        font-size: 1.05rem;
+        color: var(--text-mid);
+        line-height: 1.75;
+      }
+      .story-body p {
+        margin-bottom: 16px;
+      }
+      .founder-sig {
+        margin-top: 28px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        justify-content: center;
+      }
+      .founder-avatar {
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        background: var(--green-mid);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.4rem;
+      }
+      .founder-info {
+        text-align: left;
+      }
+      .founder-name {
+        font-weight: 700;
+        font-size: 0.95rem;
+      }
+      .founder-title {
+        font-size: 0.82rem;
+        color: var(--text-muted);
+      }
+
+      /* ── WHAT YOU GET ── */
+      .offers {
+        background: var(--white);
+        padding: 72px 24px;
+      }
+      .offers-inner {
+        max-width: 900px;
+        margin: 0 auto;
+      }
+      .offers h2 {
+        font-family: "Sora", sans-serif;
+        font-size: clamp(1.6rem, 3vw, 2.2rem);
+        font-weight: 800;
+        text-align: center;
+        margin-bottom: 8px;
+      }
+      .offers-sub {
+        text-align: center;
+        color: var(--text-muted);
+        font-size: 1rem;
+        margin-bottom: 48px;
+      }
+      .offers-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 20px;
+      }
+      .offer-card {
+        border: 1.5px solid var(--border);
+        border-radius: var(--radius);
+        padding: 28px 24px;
+        background: var(--off-white);
+        transition:
+          border-color 0.2s,
+          box-shadow 0.2s;
+        position: relative;
+      }
+      .offer-card:hover {
+        border-color: var(--green);
+        box-shadow: var(--shadow);
+      }
+      .offer-icon {
+        width: 44px;
+        height: 44px;
+        border-radius: 10px;
+        background: var(--green-light);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.3rem;
+        margin-bottom: 16px;
+      }
+      .offer-card h3 {
+        font-family: "Sora", sans-serif;
+        font-weight: 700;
+        font-size: 1rem;
+        margin-bottom: 8px;
+      }
+      .offer-card p {
+        font-size: 0.9rem;
+        color: var(--text-muted);
+        line-height: 1.6;
+        margin-bottom: 16px;
+      }
+      .offer-link {
+        font-size: 0.88rem;
+        font-weight: 600;
+        color: var(--green-dark);
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+      }
+      .offer-link:hover {
+        text-decoration: underline;
+      }
+      .offer-badge {
+        position: absolute;
+        top: 14px;
+        right: 14px;
+        background: var(--green);
+        color: var(--white);
+        font-size: 0.7rem;
+        font-weight: 700;
+        padding: 3px 8px;
+        border-radius: 100px;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+      }
+
+      /* ── FEATURES ── */
+      .features {
+        padding: 72px 24px;
+        max-width: 900px;
+        margin: 0 auto;
+      }
+      .features h2 {
+        font-family: "Sora", sans-serif;
+        font-size: clamp(1.6rem, 3vw, 2.2rem);
+        font-weight: 800;
+        text-align: center;
+        margin-bottom: 48px;
+      }
+      .features-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 16px;
+      }
+      .feature-item {
+        display: flex;
+        gap: 14px;
+        align-items: flex-start;
+        padding: 20px;
+        border-radius: 12px;
+        background: var(--white);
+        border: 1px solid var(--border);
+      }
+      .feature-dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: var(--green);
+        margin-top: 5px;
+        flex-shrink: 0;
+      }
+      .feature-item h4 {
+        font-weight: 700;
+        font-size: 0.95rem;
+        margin-bottom: 4px;
+      }
+      .feature-item p {
+        font-size: 0.85rem;
+        color: var(--text-muted);
+        line-height: 1.5;
+      }
+
+      /* ── LEAD FORM ── */
+      .form-section {
+        background: var(--text-dark);
+        padding: 72px 24px;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+      }
+      .form-section::before {
+        content: "";
+        position: absolute;
+        top: -100px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 600px;
+        height: 600px;
+        background: radial-gradient(
+          circle,
+          rgba(34, 197, 94, 0.15) 0%,
+          transparent 65%
+        );
+        pointer-events: none;
+      }
+      .form-section h2 {
+        font-family: "Sora", sans-serif;
+        font-size: clamp(1.6rem, 3vw, 2.3rem);
+        font-weight: 800;
+        color: var(--white);
+        margin-bottom: 10px;
+      }
+      .form-section .form-sub {
+        color: #9ca3af;
+        font-size: 1rem;
+        margin-bottom: 36px;
+        max-width: 480px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .lead-form {
+        max-width: 440px;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+      .lead-form input {
+        width: 100%;
+        padding: 14px 18px;
+        border-radius: 10px;
+        border: 1.5px solid #374151;
+        background: #1f2937;
+        color: var(--white);
+        font-size: 1rem;
+        font-family: "DM Sans", sans-serif;
+        outline: none;
+        transition: border-color 0.2s;
+      }
+      .lead-form input::placeholder {
+        color: #6b7280;
+      }
+      .lead-form input:focus {
+        border-color: var(--green);
+      }
+      .lead-form button {
+        width: 100%;
+        padding: 15px;
+        background: var(--green);
+        color: var(--white);
+        font-size: 1rem;
+        font-weight: 700;
+        font-family: "DM Sans", sans-serif;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+        transition:
+          background 0.2s,
+          transform 0.15s;
+      }
+      .lead-form button:hover {
+        background: var(--green-dark);
+        transform: translateY(-1px);
+      }
+      .form-privacy {
+        font-size: 0.78rem;
+        color: #6b7280;
+        margin-top: 8px;
+      }
+
+      /* ── ROADMAP / VIDEO ── */
+      .roadmap {
+        background: var(--white);
+        padding: 72px 24px;
+        text-align: center;
+      }
+      .roadmap-inner {
+        max-width: 720px;
+        margin: 0 auto;
+      }
+      .roadmap h2 {
+        font-family: "Sora", sans-serif;
+        font-size: clamp(1.6rem, 3vw, 2.2rem);
+        font-weight: 800;
+        margin-bottom: 12px;
+      }
+      .roadmap p {
+        color: var(--text-muted);
+        font-size: 1rem;
+        line-height: 1.65;
+        margin-bottom: 32px;
+      }
+      .video-placeholder {
+        width: 100%;
+        aspect-ratio: 16/9;
+        border-radius: var(--radius);
+        background: #111827;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 28px;
+        border: 1.5px solid #1f2937;
+        position: relative;
+        overflow: hidden;
+        cursor: pointer;
+      }
+      .video-placeholder::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(135deg, #0f172a 0%, #1a2e1a 100%);
+      }
+      .play-btn {
+        position: relative;
+        width: 72px;
+        height: 72px;
+        border-radius: 50%;
+        background: var(--green);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 0 40px rgba(34, 197, 94, 0.4);
+        transition: transform 0.2s;
+      }
+      .video-placeholder:hover .play-btn {
+        transform: scale(1.08);
+      }
+      .play-btn svg {
+        width: 28px;
+        height: 28px;
+        fill: white;
+        margin-left: 4px;
+      }
+      .video-label {
+        position: absolute;
+        bottom: 16px;
+        left: 50%;
+        transform: translateX(-50%);
+        color: #9ca3af;
+        font-size: 0.85rem;
+        white-space: nowrap;
+      }
+
+      /* ── SOCIAL PROOF / QUOTE ── */
+      .social {
+        padding: 64px 24px;
+        max-width: 640px;
+        margin: 0 auto;
+        text-align: center;
+      }
+      .quote-mark {
+        font-size: 4rem;
+        line-height: 1;
+        color: var(--green);
+        font-family: "Sora", sans-serif;
+        margin-bottom: -10px;
+      }
+      .quote-text {
+        font-size: 1.2rem;
+        font-style: italic;
+        color: var(--text-mid);
+        line-height: 1.65;
+        margin-bottom: 20px;
+      }
+      .quote-attr {
+        font-size: 0.88rem;
+        font-weight: 600;
+        color: var(--text-muted);
+      }
+
+      /* ── BOTTOM CTA ── */
+      .bottom-cta {
+        background: var(--green);
+        padding: 64px 24px;
+        text-align: center;
+      }
+      .bottom-cta h2 {
+        font-family: "Sora", sans-serif;
+        font-size: clamp(1.5rem, 3vw, 2.2rem);
+        font-weight: 800;
+        color: var(--white);
+        margin-bottom: 10px;
+      }
+      .bottom-cta p {
+        color: rgba(255, 255, 255, 0.85);
+        font-size: 1rem;
+        margin-bottom: 28px;
+      }
+      .btn-white {
+        background: var(--white);
+        color: var(--green-dark);
+        padding: 14px 32px;
+        border-radius: 10px;
+        font-weight: 700;
+        font-size: 1rem;
+        text-decoration: none;
+        display: inline-block;
+        transition:
+          transform 0.15s,
+          box-shadow 0.15s;
+      }
+      .btn-white:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+      }
+
+      /* ── FOOTER ── */
+      footer {
+        background: var(--text-dark);
+        padding: 36px 24px;
+        text-align: center;
+      }
+      .footer-logo {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        font-family: "Sora", sans-serif;
+        font-weight: 800;
+        font-size: 1.1rem;
+        color: var(--white);
+        margin-bottom: 12px;
+      }
+      .footer-logo-icon {
+        width: 28px;
+        height: 28px;
+        background: var(--green);
+        border-radius: 7px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.9rem;
+      }
+      .footer-links {
+        display: flex;
+        gap: 20px;
+        justify-content: center;
+        margin-top: 12px;
+        margin-bottom: 12px;
+      }
+      .footer-links a {
+        color: #9ca3af;
+        font-size: 0.85rem;
+        text-decoration: none;
+      }
+      .footer-links a:hover {
+        color: var(--green);
+      }
+      .footer-copy {
+        color: #4b5563;
+        font-size: 0.8rem;
+      }
+      .ig-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        color: var(--green);
+        font-weight: 600;
+        font-size: 0.9rem;
+        text-decoration: none;
+        margin-top: 10px;
+      }
+      .ig-link:hover {
+        text-decoration: underline;
+      }
+
+      /* ── RESPONSIVE ── */
+      @media (max-width: 600px) {
+        nav {
+          padding: 0 16px;
+        }
+        .hero {
+          padding: 52px 16px 64px;
+        }
+        .story,
+        .features,
+        .roadmap-inner {
+          padding-left: 0;
+          padding-right: 0;
+        }
+      }
+
+      /* ── ANNOTATION (GHL notes) ── */
+      .ghl-note {
+        display: inline-block;
+        background: #fef9c3;
+        border: 1px dashed #ca8a04;
+        color: #92400e;
+        font-size: 0.72rem;
+        font-weight: 600;
+        padding: 2px 8px;
+        border-radius: 4px;
+        margin-top: 6px;
+        font-family: monospace;
+        letter-spacing: 0.02em;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- ══ NAV ══ -->
+    <nav>
+      <a class="nav-logo" href="#">
+        <img src="public/byob.svg" alt="BYOB-logo" width="36px" height="36px" />
+        BYO Budget
+      </a>
+      <a class="nav-cta" href="https://app.byobudget.com" target="_blank"
+        >Get the Free App →</a
+      >
+    </nav>
+
+    <!-- ══ HERO ══ -->
+    <section class="hero">
+      <div class="hero-badge">
+        <span></span> 100% Free · Built for Service Industry Workers
+      </div>
+      <h1>Turn inconsistent income into <em>real savings & stability.</em></h1>
+      <p class="hero-sub">
+        Get the FREE budgeting app AND the road map to life-changing financial
+        comfort — created by others in the service industry, for you.
+      </p>
+      <div class="hero-btns">
+        <a class="btn-primary" href="https://app.byobudget.com" target="_blank"
+          >🚀 Get the Free App</a
+        >
+        <a class="btn-outline" href="#get-access">Claim Your Free Access ↓</a>
+      </div>
+      <br />
+      <small class="ghl-note"
+        >GHL: Hero section — headline, subheadline, 2 button CTAs. "Claim Your
+        Free Access" scrolls to lead form below.</small
+      >
+    </section>
+
+    <!-- ══ TRUST BAR ══ -->
+    <div class="trust-bar">
+      <p>
+        ✅ &nbsp;Free Tip Tracking &amp; Budgeting App &nbsp;·&nbsp; ✅
+        &nbsp;Financial Road Map Video &nbsp;·&nbsp; ✅ &nbsp;No Credit Card
+        Ever
+      </p>
+    </div>
+
+    <!-- ══ FOUNDER STORY ══ -->
+    <section class="story">
+      <p class="section-label">From the founder</p>
+      <h2>I built this for myself. Now I'm giving it to you — free.</h2>
+      <div class="story-body">
+        <p>
+          Over the years working in bars and restaurants, I saw how hard it can
+          be to manage money when your income isn't consistent. Tips in cash,
+          shifts that vary week to week, and no "salary" to plan around — it's a
+          real challenge.
+        </p>
+        <p>
+          So I built a system for myself. Over a decade later, it completely
+          changed how I save, budget, and think about money — especially with
+          tip income. And now, I'm turning that into something bigger:
+          <strong>BYO Budget.</strong>
+        </p>
+        <p>No lie, this can change your life.</p>
+      </div>
+      <div class="founder-sig">
+        <div class="founder-avatar">🤙</div>
+        <div class="founder-info">
+          <div class="founder-name">Vince</div>
+          <div class="founder-title">Founder, BYO Budget</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ WHAT YOU GET ══ -->
+    <section class="offers">
+      <div class="offers-inner">
+        <p class="section-label" style="text-align: center">
+          Everything you get — free
+        </p>
+        <h2>Get the FREE Budgeting App &amp; more!</h2>
+        <p class="offers-sub">
+          Everything below is 100% free. No catch, no credit card, no
+          subscription.
+        </p>
+
+        <div class="offers-grid">
+          <!-- App -->
+          <div class="offer-card">
+            <span class="offer-badge">Free</span>
+            <div class="offer-icon">📱</div>
+            <h3>The BYO Budget App</h3>
+            <p>
+              Envelope-style budgeting built for service workers. Track tips,
+              log income, and allocate funds into digital envelopes for rent,
+              groceries, savings, and more.
+            </p>
+            <a
+              class="offer-link"
+              href="https://app.byobudget.com"
+              target="_blank"
+              >Launch the App →</a
+            >
+          </div>
+
+          <!-- How-to Video -->
+          <div class="offer-card">
+            <span class="offer-badge">Free</span>
+            <div class="offer-icon">🎬</div>
+            <h3>Quick "How To Use It" Video</h3>
+            <p>
+              A short walkthrough showing exactly how to get started with the
+              app so you can start tracking your tips and building your budget
+              today.
+            </p>
+            <a
+              class="offer-link"
+              href="https://www.loom.com/share/e35b2e276c9e461696083f6ad17d0da5"
+              target="_blank"
+              >Watch the Video →</a
+            >
+          </div>
+
+          <!-- Road Map -->
+          <div class="offer-card">
+            <span class="offer-badge">Free</span>
+            <div class="offer-icon">🗺️</div>
+            <h3>The Financial Road Map</h3>
+            <p>
+              The exact step-by-step road map that Vince and others have used to
+              achieve real financial stability — even on unpredictable,
+              tip-based income.
+            </p>
+            <a
+              class="offer-link"
+              href="https://youtu.be/VeqodSdVWpM?si=Ky8Hz5g2AQZHB9nv"
+              target="_blank"
+              >Watch the Road Map →</a
+            >
+          </div>
+
+          <!-- Feedback -->
+          <div class="offer-card">
+            <div class="offer-icon">💬</div>
+            <h3>Shape the App's Future</h3>
+            <p>
+              The app is still in its testing phase — and it's only getting
+              better. Your feedback directly influences what gets built next.
+              You have a voice here.
+            </p>
+            <a
+              class="offer-link"
+              href="https://forms.gle/nWM5a3aX4bhEPSKs8"
+              target="_blank"
+              >Share Your Feedback →</a
+            >
+          </div>
+        </div>
+
+        <p style="text-align: center; margin-top: 36px">
+          <a class="btn-primary" href="#get-access"
+            >Claim Your Free Access Now →</a
+          >
+        </p>
+        <p style="text-align: center; margin-top: 6px">
+          <span class="ghl-note"
+            >GHL: "Claim Your Free Access" button — scrolls to lead form or
+            triggers GHL popup/form step</span
+          >
+        </p>
+      </div>
+    </section>
+
+    <!-- ══ ROAD MAP VIDEO SECTION ══ -->
+    <section class="roadmap">
+      <div class="roadmap-inner">
+        <p class="section-label">The road map</p>
+        <h2>The steps that actually work — from someone who's been there.</h2>
+        <p>
+          Vince walks you through the same financial road map he used — and that
+          others in the service industry have used — to build real, lasting
+          financial stability. No fluff, no generic advice.
+        </p>
+
+        <!-- How-to video -->
+        <p
+          style="
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+            text-align: left;
+          "
+        >
+          ▶ How to Use the App (Quick Start)
+        </p>
+        <a
+          class="video-placeholder"
+          href="https://www.loom.com/share/e35b2e276c9e461696083f6ad17d0da5"
+          target="_blank"
+          style="text-decoration: none"
+        >
+          <div class="play-btn">
+            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg>
+          </div>
+          <span class="video-label">Watch on Loom · Quick App Walkthrough</span>
+        </a>
+
+        <!-- Road map video -->
+        <p
+          style="
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+            text-align: left;
+          "
+        >
+          ▶ The Financial Road Map
+        </p>
+        <a
+          class="video-placeholder"
+          href="https://youtu.be/VeqodSdVWpM?si=Ky8Hz5g2AQZHB9nv"
+          target="_blank"
+          style="text-decoration: none"
+        >
+          <div class="play-btn">
+            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg>
+          </div>
+          <span class="video-label"
+            >Watch on YouTube · Full Road Map Explanation</span
+          >
+        </a>
+
+        <span class="ghl-note"
+          >GHL: Replace these placeholder boxes with embedded Loom/YouTube video
+          widgets using GHL's Video Element</span
+        >
+      </div>
+    </section>
+
+    <!-- ══ FEATURES ══ -->
+    <section class="features">
+      <p class="section-label" style="text-align: center">
+        Built for how you actually work
+      </p>
+      <h2>Everything you need. Nothing you don't.</h2>
+      <div class="features-grid">
+        <div class="feature-item">
+          <div class="feature-dot"></div>
+          <div>
+            <h4>Envelope Budgeting</h4>
+            <p>
+              Allocate money into digital envelopes for rent, groceries,
+              savings, and more.
+            </p>
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-dot"></div>
+          <div>
+            <h4>Tip & Income Tracking</h4>
+            <p>
+              Log tips and income instantly. Watch your earnings build in
+              real-time.
+            </p>
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-dot"></div>
+          <div>
+            <h4>Financial Insights</h4>
+            <p>
+              Personalized spending patterns to help you understand where your
+              money goes.
+            </p>
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-dot"></div>
+          <div>
+            <h4>Goal Setting</h4>
+            <p>
+              Set financial goals and track your progress with clear, visual
+              tools.
+            </p>
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-dot"></div>
+          <div>
+            <h4>Secure & Private</h4>
+            <p>
+              Bank-level encryption keeps your financial data safe and private.
+            </p>
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-dot"></div>
+          <div>
+            <h4>Simple Interface</h4>
+            <p>
+              Clean and intuitive — works effortlessly on any device, any shift.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ LEAD CAPTURE FORM ══ -->
+    <section class="form-section" id="get-access">
+      <h2>Get instant free access — drop your info below.</h2>
+      <p class="form-sub">
+        We'll send you the app link, the road map video, and updates as BYO
+        Budget keeps getting better. No spam. Ever.
+      </p>
+
+      <div class="lead-form">
+        <input type="text" placeholder="Your first name" />
+        <input type="email" placeholder="Your best email address" />
+        <button type="button">Send Me Free Access 🚀</button>
+        <p class="form-privacy">
+          🔒 Your info is private. We will never share or sell it.
+        </p>
+      </div>
+
+      <p style="margin-top: 32px; color: #6b7280; font-size: 0.9rem">
+        Or skip the form and go straight to the app:
+      </p>
+      <a
+        class="btn-white"
+        href="https://app.byobudget.com"
+        target="_blank"
+        style="margin-top: 10px"
+        >Launch the App →</a
+      >
+
+      <br /><br />
+      <span class="ghl-note"
+        >GHL: Replace this form with a GHL Form element (Name + Email). Set
+        automation to send confirmation email with app link + both video links.
+        CTA button = GHL Form Submit button.</span
+      >
+    </section>
+
+    <!-- ══ QUOTE ══ -->
+    <section class="social">
+      <div class="quote-mark">"</div>
+      <p class="quote-text">
+        No lie, this can change your life. Spread the word — you're great!
+      </p>
+      <p class="quote-attr">— Vince, Founder of BYO Budget</p>
+    </section>
+
+    <!-- ══ BOTTOM CTA ══ -->
+    <section class="bottom-cta">
+      <h2>Ready to take control of your money?</h2>
+      <p>
+        Join other servers and bartenders already budgeting smarter with BYO
+        Budget. It's free — always.
+      </p>
+      <a class="btn-white" href="https://app.byobudget.com" target="_blank"
+        >Get the Free App →</a
+      >
+      <br /><br />
+      <a
+        class="ig-link"
+        href="https://www.instagram.com/byobudgetapp"
+        target="_blank"
+        >📸 Follow @byobudgetapp on Instagram</a
+      >
+      <br /><br />
+      <span class="ghl-note" style="color: #92400e; background: #fef9c3"
+        >GHL: Bottom CTA button can link to app OR trigger lead form popup —
+        your choice based on funnel goal</span
+      >
+    </section>
+
+    <!-- ══ FOOTER ══ -->
+    <footer>
+      <div class="footer-logo">
+        <span class="footer-logo-icon">💚</span>
+        BYO Budget
+      </div>
+      <div class="footer-links">
+        <a href="#">Privacy</a>
+        <a href="#">Terms</a>
+        <a href="https://app.byobudget.com" target="_blank">App</a>
+        <a href="https://www.instagram.com/byobudgetapp" target="_blank"
+          >Instagram</a
+        >
+        <a href="https://forms.gle/nWM5a3aX4bhEPSKs8" target="_blank"
+          >Feedback</a
+        >
+      </div>
+      <p class="footer-copy">
+        © 2026 BYO Budget. Built for the service industry, by the service
+        industry.
+      </p>
+    </footer>
+  </body>
+</html>
