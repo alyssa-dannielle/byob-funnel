@@ -666,6 +666,19 @@
         color: #4b5563;
         font-size: 0.8rem;
       }
+      .fb-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        color: var(--green);
+        font-weight: 600;
+        font-size: 0.9rem;
+        text-decoration: none;
+        margin-top: 10px;
+      }
+      .fb-link:hover {
+        text-decoration: underline;
+      }
       .ig-link {
         display: inline-flex;
         align-items: center;
@@ -1076,11 +1089,29 @@
       >
       <br /><br />
       <a
+        class="fb-link"
+        href="https://www.facebook.com/byobudget"
+        target="_blank"
+      >
+        <img
+          src="public/facebook.svg"
+          alt="Facebook"
+          width="45px"
+          height="45px"
+        />
+      </a>
+      <a
         class="ig-link"
         href="https://www.instagram.com/byobudgetapp"
         target="_blank"
-        >📸 Follow @byobudgetapp on Instagram</a
       >
+        <img
+          src="public/instagram.svg"
+          alt="Instagram"
+          width="40px"
+          height="40px"
+        />
+      </a>
       <br /><br />
       <span class="ghl-note" style="color: #92400e; background: #fef9c3"
         >GHL: Bottom CTA button can link to app OR trigger lead form popup —
@@ -1091,7 +1122,7 @@
     <!-- ══ FOOTER ══ -->
     <footer>
       <div class="footer-logo">
-        <span class="footer-logo-icon">💚</span>
+        <img src="public/byob.svg" alt="BYOB-logo" width="28px" height="28px" />
         BYO Budget
       </div>
       <div class="footer-links">
